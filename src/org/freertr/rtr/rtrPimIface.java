@@ -1,6 +1,5 @@
 package org.freertr.rtr;
 
-import java.util.Comparator;
 import java.util.Timer;
 import java.util.TimerTask;
 import org.freertr.addr.addrIP;
@@ -193,7 +192,7 @@ public class rtrPimIface implements ipPrt {
         rtrPimNeigh nei = new rtrPimNeigh(this, pckBin.IPsrc);
         switch (pckPim.typ) {
             case packPim.typJoin:
-                if (pckPim.upstream.compare(pckPim.upstream, iface.addr) != 0) {
+                if (pckPim.upstream.compareTo(iface.addr) != 0) {
                     break;
                 }
                 int tim = pckPim.valHoldTime * 1000;
@@ -329,6 +328,9 @@ public class rtrPimIface implements ipPrt {
         } else {
             ups = grp.upstream;
         }
+        if (ups == null) {
+            return;
+        }
         packHolder pckBin = new packHolder(true, true);
         packPim pckPim = new packPim();
         pckPim.fillJoin(ups, grp.group, grp.source, helloInterval * need);
@@ -411,7 +413,7 @@ public class rtrPimIface implements ipPrt {
 
 }
 
-class rtrPimNeigh implements Comparator<rtrPimNeigh>, rtrBfdClnt {
+class rtrPimNeigh implements Comparable<rtrPimNeigh>, rtrBfdClnt {
 
     /**
      * parent
@@ -454,8 +456,8 @@ class rtrPimNeigh implements Comparator<rtrPimNeigh>, rtrBfdClnt {
         peer = adr.copyBytes();
     }
 
-    public int compare(rtrPimNeigh o1, rtrPimNeigh o2) {
-        return o1.peer.compare(o1.peer, o2.peer);
+    public int compareTo(rtrPimNeigh o) {
+        return peer.compareTo(o.peer);
     }
 
     /**

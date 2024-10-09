@@ -2441,6 +2441,8 @@ public class userExec {
         hl.add(null, "3 3,.      <str>                      parameter");
         hl.add(null, "2 3,.    hwdet                        perform hw detection");
         hl.add(null, "3 3,.      <str>                      parameter");
+        hl.add(null, "2 3,.    hwred                        perform hw redetection");
+        hl.add(null, "3 3,.      <str>                      parameter");
         hl.add(null, ".2 3,.   hwcfg                        perform hw configuration");
         hl.add(null, ".3 3,.     <str>                      parameter");
         hl.add(null, "2 3,.    image                        perform image creation");
@@ -3691,7 +3693,7 @@ public class userExec {
             if (resolv) {
                 reportN[ttl] = trc.domainNam;
             }
-            if (trg.compare(trg, trc.errRtr) == 0) {
+            if (trg.compareTo(trc.errRtr) == 0) {
                 ttl = 0;
             }
         }
@@ -3835,7 +3837,7 @@ public class userExec {
                 continue;
             }
             none = 0;
-            if (trg.compare(trg, trc.errRtr) == 0) {
+            if (trg.compareTo(trc.errRtr) == 0) {
                 break;
             }
         }

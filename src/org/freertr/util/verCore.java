@@ -11,11 +11,6 @@ public class verCore {
     }
 
     /**
-     * path of vm files
-     */
-    public final static String vmDir = "../vm2/";
-
-    /**
      * os name
      */
     public final static String name = "freeRouter";
@@ -48,7 +43,7 @@ public class verCore {
     /**
      * compile day
      */
-    public final static int day = 1;
+    public final static int day = 9;
 
     /**
      * statement of release
